@@ -11,7 +11,7 @@
         <div class="container" >
 
 
-            <form action="{{ url('/register') }}" method="post">
+            <form action="{{ url('/reg/register') }}" method="post">
                 @csrf
                 @if(Session::has('fail'))
                     <div class="alert alert-danger">{{Session::get('fail')}}</div>

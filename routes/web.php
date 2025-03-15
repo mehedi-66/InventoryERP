@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\AuthController;
 /*
 |--------------------------------------------------------------------------
@@ -47,14 +48,14 @@ Route::group(['prefix' => 'product','middleware' => ['isLoggedIn','roleCheck:Adm
     Route::get('getList', [ProductController::class, 'getList']);
 });
 Route::group(['prefix' => 'purchase','middleware' => ['isLoggedIn','roleCheck:Admin']], function () {
-    Route::get('list', [ProductController::class, 'show']);
-    Route::get('create', [ProductController::class, 'create']);
-    Route::post('create', [ProductController::class, 'store']);
-    Route::get('delete/{id}', [ProductController::class, 'delete']);
-    Route::get('edit/{id}', [ProductController::class, 'edit']);
-    Route::post('update/{id}', [ProductController::class, 'update']);
+    Route::get('list', [PurchaseController::class, 'show']);
+    Route::get('create', [PurchaseController::class, 'create']);
+    Route::post('create', [PurchaseController::class, 'store']);
+    Route::get('delete/{id}', [PurchaseController::class, 'delete']);
+    Route::get('edit/{id}', [PurchaseController::class, 'edit']);
+    Route::post('update/{id}', [PurchaseController::class, 'update']);
 
     // APIs
-    Route::get('getList', [ProductController::class, 'getList']);
+    Route::get('getList', [PurchaseController::class, 'getList']);
 });
 

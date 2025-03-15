@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
-use App\Models\MaterialDescription;
-use App\Models\SecondMaterialDescription;
 use Carbon\Carbon;
 
 class ProductController extends Controller

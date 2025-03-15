@@ -72,19 +72,31 @@
                                     <a href="{{ url('/product/create') }}">Add Product</a>
                                 </li>
                                 <li>
-                                    <a href="{{ url('/product/list') }}">Products</a>
+                                    <a href="{{ url('/product/list') }}">Product List</a>
                                 </li>
                             </ul>
                         </li>
                         <li>
-                            <a href="#productSubmenu" data-bs-toggle="collapse" aria-expanded="false"
+                            <a href="#Purchase" data-bs-toggle="collapse" aria-expanded="false"
                                 class="dropdown-toggle">Purchase </a>
-                            <ul class="collapse list-unstyled" id="productSubmenu">
+                            <ul class="collapse list-unstyled" id="Purchase">
                                 <li>
-                                    <a href="{{ url('/purchase/create') }}">Add Product</a>
+                                    <a href="{{ url('/purchase/create') }}">Add Purchase</a>
                                 </li>
                                 <li>
-                                    <a href="{{ url('/purchase/list') }}">Products</a>
+                                    <a href="{{ url('/purchase/list') }}">Purchase List</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#Report" data-bs-toggle="collapse" aria-expanded="false"
+                                class="dropdown-toggle">Report </a>
+                            <ul class="collapse list-unstyled" id="Report">
+                                <li>
+                                    <a href="{{ url('/report/allSalesMonthly') }}">Monthly Sales</a>
+                                </li>
+                                <li>
+                                    <a href="{{ url('/report/byProducthMontlySales') }}">By Product</a>
                                 </li>
                             </ul>
                         </li>
@@ -104,83 +116,13 @@
                     <ul class="list-unstyled components mb-5">
                         <li>
                             <a href="#invoiceSubmenu" data-bs-toggle="collapse" aria-expanded="false"
-                                class="dropdown-toggle">Invoice</a>
+                                class="dropdown-toggle">Sales</a>
                             <ul class="collapse list-unstyled" id="invoiceSubmenu">
                                 <li>
-                                    <a href="{{ url('/salesInvoice/create') }}">Add Sales Invoice</a>
+                                    <a href="{{ url('/sales/create') }}">Add Sales</a>
                                 </li>
                                 <li>
-                                    <a href="{{ url('/sampleInvoice/create') }}">Add Sample Invoice</a>
-                                </li>
-                                <li>
-                                    <a href="{{ url('/loanInvoice/create') }}">Add Loan Invoice</a>
-                                </li>
-                                <li>
-                                    <a href="{{ url('/salesInvoice/list') }}">Invoice List</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#accountReport" data-bs-toggle="collapse" aria-expanded="false"
-                                class="dropdown-toggle">Reports</a>
-                            <ul class="collapse list-unstyled" id="accountReport">
-                                <li>
-                                    <a href="{{ url('/accountReport/lastMonthSales') . '/' . date('Y-m-d') }}"
-                                        target="_blank">Last Month Sales</a>
-                                </li>
-                                <li>
-                                    <a href="{{ url('/accountReport/monthlySalesStandard') . '/' . date('Y-m-d') }}"
-                                        target="_blank">Monthly Sales Standard</a>
-                                </li>
-                                <li>
-                                    <a href="{{ url('/accountReport/yearSalesStandard') . '/' . date('Y-m-d', strtotime('-1 year')) . '/' . date('Y-m-d') }}"
-                                        target="_blank">
-                                        Financial Year Standard
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#accountDaily" data-bs-toggle="collapse" aria-expanded="false"
-                                class="dropdown-toggle">Daily Expanse</a>
-                            <ul class="collapse list-unstyled" id="accountDaily">
-                                <li>
-                                    <a href="{{ url('/accountDaily/expanse') }}">Add Daily Expanse</a>
-                                </li>
-                                <li>
-                                    <a href="{{ url('/accountDaily/expanseList'). '/' . date('Y-m-d')  }}">Close Daily Expanse List</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#customerPayment" data-bs-toggle="collapse" aria-expanded="false"
-                                class="dropdown-toggle">Customer Payments</a>
-                            <ul class="collapse list-unstyled" id="customerPayment">
-                                <li>
-                                    <a href="{{ url('/customerPayment/create')}}">Make Payment</a>
-                                </li>
-                                <li>
-                                    <a href="{{ url('/customerPayment/list/Pending') }}">Payment List</a>
-                                </li>
-                                <li>
-                                    <a href="{{ url('/customerPayment/statementReport/0/') . '/' . date('Y-m-d') . '/' . date('Y-m-d').'/InvoiceAndPayment' }}"
-                                    target="_blank">Customer Statement</a>
-                                </li>
-                                <li>
-                                    <a href="{{ url('/customerPayment/createForward')}}">Add Forward Customer </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#customerSubmenu" data-bs-toggle="collapse" aria-expanded="false"
-                                class="dropdown-toggle">Customer </a>
-                            <ul class="collapse list-unstyled" id="customerSubmenu">
-                                <li>
-                                    <a href="{{ url('/customer/create') }}">Add Customer</a>
-                                </li>
-                                <li>
-                                    <a href="{{ url('/customer/list') }}">Customers</a>
+                                    <a href="{{ url('/sales/list') }}">Sales List</a>
                                 </li>
                             </ul>
                         </li>
