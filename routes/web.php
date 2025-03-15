@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\SalesController;
 use App\Http\Controllers\AuthController;
 /*
 |--------------------------------------------------------------------------
@@ -57,5 +58,17 @@ Route::group(['prefix' => 'purchase','middleware' => ['isLoggedIn','roleCheck:Ad
 
     // APIs
     Route::get('getList', [PurchaseController::class, 'getList']);
+});
+Route::group(['prefix' => 'sales','middleware' => ['isLoggedIn','roleCheck:Admin,Account']], function () {
+    Route::get('list', [SalesController::class, 'show']);
+    Route::get('create', [SalesController::class, 'create']);
+    Route::post('create', [SalesController::class, 'store']);
+    Route::get('delete/{id}', [SalesController::class, 'delete']);
+    Route::get('edit/{id}', [SalesController::class, 'edit']);
+    Route::post('update/{id}', [SalesController::class, 'update']);
+    Route::post('salesDetailsCreate/{sales_id}', [SalesController::class, 'salesDetailsCreate']);
+    
+    // APIs
+    Route::get('getList', [SalesController::class, 'getList']);
 });
 
