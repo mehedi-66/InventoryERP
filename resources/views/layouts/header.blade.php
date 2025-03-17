@@ -93,10 +93,9 @@
                                 class="dropdown-toggle">Report </a>
                             <ul class="collapse list-unstyled" id="Report">
                                 <li>
-                                    <a href="{{ url('/report/allSalesMonthly') }}">Monthly Sales</a>
-                                </li>
+                                    <a href="{{ url('/report/allSalesMonthly/' . date('Y-m-d')) }}" target="_blank" >Monthly Sales</a>                                </li>
                                 <li>
-                                    <a href="{{ url('/report/byProducthMontlySales') }}">By Product</a>
+                                    <a href="{{ url('/report/byProducthMontlySales/' . date('Y-m-d').'/1') }}" target="_blank">By Product</a>
                                 </li>
                             </ul>
                         </li>

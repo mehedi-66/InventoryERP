@@ -107,10 +107,11 @@ class SalesController extends Controller
                 ->join('products', 'purchases.product_id', '=', 'products.product_id')
                 ->select('purchases.*', 'products.product_name')
                 ->get();
-            $sales_details_list =  DB::table('sales__details')
-            ->join('products', 'sales__details.product_id', '=', 'products.product_id')
-            ->select('sales__details.*', 'products.product_name')
-            ->get();
+            $sales_details_list = DB::table('sales__details')
+                ->join('products', 'sales__details.product_id', '=', 'products.product_id')
+                ->where('sales__details.sales_id', '=', $id)
+                ->select('sales__details.*', 'products.product_name')
+                ->get();
             $urlProductDetails = url('/sales/salesDetailsCreate') . "/" . $id;
 
             $data = compact('sales', 'url', 'toptitle', 'urlProductDetails', 'sales_details', 'productList', 'sales_details_list');
@@ -181,5 +182,50 @@ class SalesController extends Controller
         $sales->save();
 
         return redirect('/sales/edit/' . $sales_id);
+    }
+
+    public function allSalesMonthly($currDate)
+    {
+        $currDate = Carbon::parse($currDate);
+
+        $FormDate = $currDate->copy()->startOfMonth()->format('Y-m-d');
+        $ToDate = $currDate->copy()->endOfMonth()->format('Y-m-d');
+
+        $salesInvoiceList = DB::table('sales')
+            // ->join('invoices', 'sales.invoice_id', '=', 'invoices.invoice_id')
+            ->whereBetween('sales.sales_date', [$FormDate, $ToDate])
+            //->where('invoices.action_type', '!=', 'DELETE')
+            ->select('sales.*')
+            ->orderBy('sales.sales_date', 'ASC')
+            ->get();
+
+        $data = compact('FormDate', 'ToDate', 'salesInvoiceList');
+
+        return view('salesReport.monthlyReport')->with($data);
+    }
+    public function byProducthMontlySales($currDate, $product_id)
+    {
+        $currDate = Carbon::parse($currDate);
+
+        $FormDate = $currDate->copy()->startOfMonth()->format('Y-m-d');
+        $ToDate = $currDate->copy()->endOfMonth()->format('Y-m-d');
+
+        $productList = DB::table('purchases')
+            ->join('products', 'purchases.product_id', '=', 'products.product_id')
+            ->select('purchases.*', 'products.product_name')
+            ->get();
+
+        $salesInvoiceList = DB::table('sales__details')
+             ->join('products', 'sales__details.product_id', '=', 'products.product_id')
+            ->whereBetween('sales__details.sales_date', [$FormDate, $ToDate])
+            ->where('sales__details.product_id', '=', $product_id)
+            //->where('invoices.action_type', '!=', 'DELETE')
+            ->select('sales__details.*', 'products.product_name')
+            ->orderBy('sales__details.sales_date', 'ASC')
+            ->get();
+
+        $data = compact('FormDate', 'ToDate', 'salesInvoiceList', 'productList', 'product_id');
+
+        return view('salesReport.monthlyByProductReport')->with($data);
     }
 }

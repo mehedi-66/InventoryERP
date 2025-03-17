@@ -71,4 +71,9 @@ Route::group(['prefix' => 'sales','middleware' => ['isLoggedIn','roleCheck:Admin
     // APIs
     Route::get('getList', [SalesController::class, 'getList']);
 });
+Route::group(['prefix' => 'report','middleware' => ['isLoggedIn','roleCheck:Admin']], function () {
+    Route::get('allSalesMonthly/{currDate}', [SalesController::class, 'allSalesMonthly']);
+    Route::get('byProducthMontlySales/{currDate}/{product_id}', [SalesController::class, 'byProducthMontlySales']);
+   
+});
 

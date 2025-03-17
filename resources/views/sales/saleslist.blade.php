@@ -2,7 +2,7 @@
 
 <!-- Set Title -->
 @push('title')
-    <title>Purchases</title>
+    <title>Sales List</title>
 @endpush
 
 @section('main-section')
@@ -15,29 +15,28 @@
         <table id="myTable" class="table table-striped table-bordered">
             <thead>
                 <tr>
-                    <th>Purchase ID</th>
+                    <th>Sales ID</th>
                     <th>Edit</th>
-                    <th>Purchase Date</th>
+                    <th>Sales Date</th>
                     <th>Invoice no</th>
-                    <th>Product Name</th>
-                    <th>Buy Amount</th>
-                    <th>Sales Amount</th>
-                    <th>Total Quantity</th>
+                    <th>Customer Name</th>
+                    <th>Items</th>
+                    <th>Total Amount</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($Purchases as  $prod)
+                @foreach($sales as  $prod)
                 <tr>
-                    <td style="width: 6%">{{ $prod->purchases_id }}</td>
+                    <td style="width: 6%">{{ $prod->sales_id }}</td>
                     <td style="width: 5%">
-                        <a class="" href="{{url('/purchase/edit')}}/{{$prod->purchases_id}}"><i class="fa fa-edit"></i></a> 
+                        <a class="" href="{{url('/sales/edit')}}/{{$prod->sales_id}}"><i class="fa fa-edit"></i></a> 
                     </td>
-                    <td>{{$prod->purchases_date}}</td>
+                    <td>{{$prod->sales_date}}</td>
                     <td>{{$prod->invoice_no}}</td>
-                    <td>{{$prod->product_name}}</td>
-                    <td>{{$prod->purchases_buy_amount}}</td>
-                    <td>{{$prod->purchases_sales_amount}}</td>
-                    <td>{{$prod->purchases_current_quantity}}</td>
+                    <td>{{$prod->customer_name}}</td>
+                    <td>{{$prod->total_items}}</td>
+                    <td>{{$prod->total_amount}}</td>
+                   
                     {{-- <td style="width: 7%"> 
                        <a class="btn btn-sm btn-danger"onClick="confirmDelete('{{url('/product/delete')}}/{{$prod->purchases_id}}')"><i class="fa fa-trash"></i></a> 
                     </td> --}}
@@ -48,7 +47,7 @@
    
     </div>
     <script type="text/javascript">
-    document.getElementById('PageName').innerText = 'Purchase List';
+    document.getElementById('PageName').innerText = 'Sales List';
        // let table = new DataTable('#myTable');
        let table = new DataTable('#myTable', {
             perPage: 10, // Number of entries per page
